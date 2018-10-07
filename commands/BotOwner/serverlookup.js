@@ -162,7 +162,7 @@ module.exports = class NCommand extends Command {
             msg.channel.send({
                 embed: {
                     timestamp: new Date(msg.timestamp),
-                    color: msg.guild.me.hoistRole.color,
+                    color: 0x00FFC6,
                     thumbnail: {
                         url: server.iconURL ? server.iconURL : `http://www.kalahandi.info/wp-content/uploads/2016/05/sorry-image-not-available.png`
                     },
