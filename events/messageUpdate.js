@@ -15,6 +15,6 @@ module.exports.run = (bot, oldMessage, newMessage) => {
         .setTimestamp()
         .setAuthor(`Message Updated By ${newMessage.author.tag}`, `${newMessage.author.displayAvatarURL}`)
         .setFooter(`${bot.user.tag}`, `${bot.user.displayAvatarURL}`)
-        .setDescription(`_ _►Content: \n ►Old Message **\`${content}\`** \n ►Update Message **\`${content2}\`** \n ►Channel ${newMessage.channel}`)
+        .setDescription(`_ _►Content: \n ►Old Message **${content}** \n ►Update Message **${content2}** \n ►Channel ${newMessage.channel}`)
     modlogs.send(botembed);
 }
