@@ -16,10 +16,13 @@ module.exports = class SRCommand extends Command {
     async run(message) {
         let string = '';
         this.client.guilds.forEach(guild => { string += `Server Name: (${guild.name})\nServer ID: (${guild.id})\nServer Icon: [Click Here](${guild.iconURL})` + '\n\n'; })
-            const hastEmb = new Discord.RichEmbed()
-                .setColor(`RANDOM`)
-                .setDescription(string)
-                .setTitle(`Current Number of Servers **[${this.client.guilds.size}]**\nHere is a List of all of the Servers: `)
-            message.channel.send(hastEmb)
+            hastebin(string, "js").then(r => {
+        var hastLink = r
+        const hastEmb = new Discord.RichEmbed()
+            .setColor(0xFFF000)
+            .setURL(hastLink)
+            .addField('Link: ', `${hastLink}`)
+        message.channel.send({ embed: hastEmb })
+    }).catch(console.error);
     }
 }
