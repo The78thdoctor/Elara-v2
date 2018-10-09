@@ -1,4 +1,4 @@
-const {Command} = require('../../util/Commando'),
+const { Command } = require('../../util/Commando'),
     Discord = require('discord.js');
 module.exports = class LockDownCommand extends Command {
     constructor(client) {
@@ -8,26 +8,21 @@ module.exports = class LockDownCommand extends Command {
             aliases: [],
             group: "moderation",
             guildOnly: true,
-            userPermissions: ["MANAGE_GUILD", "ADMINISTRATOR", "MANAGE_CHANNELS"],
-            examples: [`${client.commandPrefix}adminperm <#Channel/ChannelID> <Role Name/ID here>`],
+            userPermissions: ["MANAGE_GUILD", "ADMINISTRATOR"],
+            examples: [`${client.commandPrefix}adminperm <Role Name/ID here>`],
             description: "Gives Admin permissions to the role for the command you run the command in. ",
             args: [
                 {
-                    key: "channel",
-                    prompt: "What channel do you want me to give the Admin Permissions to.",
-                    type: 'channel'
-                },
-                {
                     key: 'role',
-                    prompt: `Please provide a role to give Admin Permissions in the channel you provided?.`,
+                    prompt: `Please provide a role to give Admin Permissions in this channel?.`,
                     type: 'role'
                 }
             ]
         })
     }
-    async run(message, { channel, role }) {
+    async run(message, { role }) {
         message.delete(15000).catch()
-        channel.overwritePermissions(role.id, {
+        message.channel.overwritePermissions(role.id, {
             SEND_MESSAGES: true,
             READ_MESSAGES: true,
             MANAGE_MESSAGES: true,
@@ -46,7 +41,7 @@ module.exports = class LockDownCommand extends Command {
         }, [`Reason\n${message.author.tag} Has Given Admin Permissions to ${role.name} In ${message.channel.name}`]);
         const lockembed = new Discord.RichEmbed()
             .setColor(`#FF000`)
-            .setDescription(`<@${message.author.id}> I have given ${role} Admin Permissions in ${channel}.`)
+            .setDescription(`<@${message.author.id}> I have given ${role} Admin Permissions in ${message.channel}.`)
             .setFooter(`This message will be deleted in 15 seconds..`)
         
         message.channel.send(lockembed).then(message => {
