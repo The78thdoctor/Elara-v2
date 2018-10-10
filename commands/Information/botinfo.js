@@ -14,8 +14,6 @@ module.exports = class BotinfoCommand extends Command {
 
     }
     async run (message){
-        let string = '';
-        this.client.guilds.forEach(guild => { string += `${guild.name}` + '\n'; })
         let botembed = new Discord.RichEmbed()
             .setDescription("[Bot Information](https://discord.gg/hgsM86w)")
             .setColor(`RANDOM`)
@@ -33,7 +31,7 @@ module.exports = class BotinfoCommand extends Command {
             .addField(`❯ Discord Bots.org Link`, `[Click Here](https://discordbots.org/bot/455166272339181589)`, true)
             .addField(`❯ bots.discord.pw Link`, `[Click Here](https://bots.discord.pw/bots/455166272339181589)`, true)
             .addField(`❯ Upvote the bot`, `[Vote Here!](https://discordbots.org/bot/455166272339181589/vote)`, true)
-            .addField(`❯ Servers`, string)
+            .addField(`❯ Servers`, `Do \`${this.client.commandPrefix}servers\` to see the full list.`, true)
             .setFooter(`Requested By ${message.author.tag}`, message.author.displayAvatarURL);
         message.say(botembed)
     }
