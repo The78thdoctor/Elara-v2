@@ -1,4 +1,4 @@
-const {Command} = require('../../util/Commando'),
+const { Command } = require('../../util/Commando'),
 Discord = require('discord.js');
 module.exports = class LockDownCommand extends Command {
     constructor(client){
@@ -8,7 +8,7 @@ module.exports = class LockDownCommand extends Command {
             aliases: ["ld"],
             group: "moderation",
             guildOnly: true,
-            userPermissions: ["MANAGE_GUILD", "MANAGE_CHANNELS", "ADMINISTRATOR", "MANAGE_MESSAGES"],
+            userPermissions: ["MANAGE_GUILD"],
             examples: [`${client.commandPrefix}lockdown`],
             description: "Locks down the channel you run the command in."
         }) 
@@ -19,7 +19,7 @@ module.exports = class LockDownCommand extends Command {
         });
         const lockembed = new Discord.RichEmbed()
             .setColor(`#FF000`)
-            .setDescription(`<@${message.author.id}> This Channel is now in Lockdown Mode to Deactivate the LockDown do **${client.commandPrefix}unlock**`)
+            .setDescription(`<@${message.author.id}> This Channel is now in Lockdown Mode to Deactivate the LockDown do **${this.client.commandPrefix}unlock**`)
         message.channel.send(lockembed)
     }
 }
