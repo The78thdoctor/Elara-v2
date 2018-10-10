@@ -10,8 +10,14 @@ module.exports.run = (bot) => {
     bot.owners[0].send(embed)
     require('../util/playing.js')(bot)
         let embed1 = new Discord.RichEmbed()
-        .setColor(`YELLOW`)
+        .setColor(`#F2FF02`)
         .setTimestamp()
         .setDescription(`${bot.user} Reconnecting`)
-    bot.channels.get("499410386492063764").send(embed1)
+    bot.channels.get("499410386492063764").send(embed1).then(msg => {
+    let embed2 = new Discord.RichEmbed()
+    .setColor(`#FF000`)
+    .setTimestamp()
+    .setDescription(`${bot.user} Connected`)
+   await msg.channel.send(embed2)
+    })
 }
