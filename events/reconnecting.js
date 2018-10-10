@@ -9,4 +9,9 @@ module.exports.run = (bot) => {
     bot.channels.get('468372950266150916').send(embed);
     bot.owners[0].send(embed)
     require('../util/playing.js')(bot)
+        let embed1 = new Discord.RichEmbed()
+        .setColor(`YELLOW`)
+        .setTimestamp()
+        .setDescription(`${bot.user} Reconnecting`)
+    bot.channels.get("499410386492063764").send(embed1)
 }
