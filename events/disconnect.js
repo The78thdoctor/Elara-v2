@@ -12,6 +12,6 @@ module.exports.run = async (bot) => {
     .setColor(`#FF000`)
     .setTimestamp()
     .setDescription(`${bot.user} Connected`)
-   await msg.channel.send(embed2)
+    msg.channel.send(embed2)
     })
 }
