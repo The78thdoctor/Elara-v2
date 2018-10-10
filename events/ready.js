@@ -1,3 +1,4 @@
+const Discord = require('discord.js');
 module.exports.run = (client) => {
     console.log(`
     Bot Account: ${client.user.tag}
@@ -8,5 +9,9 @@ module.exports.run = (client) => {
     User Count: ${client.users.size}
     `);
     require('../util/playing.js')(client)
-
+    let embed = new Discord.RichEmbed()
+    .setColor(`#FF000`)
+    .setTimestamp()
+    .setDescription(`${client.user} Connected`)
+    client.channels.get("499410386492063764").send(embed)
 }
