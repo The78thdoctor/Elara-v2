@@ -15,7 +15,7 @@ module.exports = class BotinfoCommand extends Command {
     }
     async run (message){
         let botembed = new Discord.RichEmbed()
-            .setDescription("[Bot Information](https://discord.gg/hgsM86w)")
+            .setDescription(`[Bot Information](${this.client.options.invite})`)
             .setColor(`RANDOM`)
             .setThumbnail(this.client.user.displayAvatarURL)
             .addField("❯ Prefixes", `${this.client.commandPrefix}, ${this.client.user}`)
