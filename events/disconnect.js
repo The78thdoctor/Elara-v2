@@ -7,5 +7,11 @@ module.exports.run = (bot) => {
         .setColor(`#FF0000`)
         .setTimestamp()
         .setDescription(`${bot.user} Disconnected`)
-    bot.channels.get("499410386492063764").send(embed1)
+    bot.channels.get("499410386492063764").send(embed1).then(msg => {
+     let embed2 = new Discord.RichEmbed()
+    .setColor(`#FF000`)
+    .setTimestamp()
+    .setDescription(`${bot.user} Connected`)
+   await msg.channel.send(embed2)
+    })
 }
