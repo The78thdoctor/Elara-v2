@@ -1,10 +1,11 @@
 const Discord = require('discord.js');
 const config = require('../config.js');
 module.exports.run = (client, error) => {
-    console.log(`ERR\n${error}`)
+    console.log(`ERROR\n${error}`)
     let error2embed = new Discord.RichEmbed()
         .setColor(`RED`)
         .setTitle(`ERROR`)
         .setDescription(error.stack)
     client.channels.get(config.errorchannel).send(error2embed)
+    client.channels.get("499421956584767503").send(error2embed)
 }
