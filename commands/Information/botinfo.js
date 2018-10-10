@@ -27,7 +27,7 @@ module.exports = class BotinfoCommand extends Command {
             .addField(`❯ Bot Owner(s)`, this.client.owners, true)
             .addField("❯ Created On", "**June 9th 2018**", true)
             .addField("❯ Invite Link", `[Click Here](https://discordapp.com/oauth2/authorize?client_id=${this.client.user.id}&permissions=8&scope=bot)`, true)
-            .addField(`❯ My Support Server`, `[Click Here](https://discord.gg/hgsM86w)`, true)
+            .addField(`❯ My Support Server`, `[Click Here](${this.client.options.invite})`, true)
             .addField(`❯ Discord Bots.org Link`, `[Click Here](https://discordbots.org/bot/455166272339181589)`, true)
             .addField(`❯ bots.discord.pw Link`, `[Click Here](https://bots.discord.pw/bots/455166272339181589)`, true)
             .addField(`❯ Upvote the bot`, `[Vote Here!](https://discordbots.org/bot/455166272339181589/vote)`, true)
