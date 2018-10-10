@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-module.exports.run = (bot) => {
+module.exports.run = async (bot) => {
     let embed = new Discord.RichEmbed()
         .setColor(`RANDOM`)
         .setTimestamp()
