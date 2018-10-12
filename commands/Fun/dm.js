@@ -26,7 +26,12 @@ module.exports = class DmCommand extends Command {
     }
 
   async  run(msg, { user, content }) {
-        user.send(content);
+      let embed = new Discord.RichEmbed()
+      .setColor(`RANDOM`)
+      .setDescription(content)
+      .setFooter(`Message from ${msg.author.tag}`, msg.author.displayAvatarURL)
+      .setTimestamp()
+        user.send(embed);
        await msg.say(`${msg.author} Sent the message to ${user.tag}`)
     }
 };
