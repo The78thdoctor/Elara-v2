@@ -6,7 +6,7 @@ module.exports = (bot) => {
     var status = [
         `Prefix ${bot.commandPrefix} or @${bot.user.username} | Serving: ${guildsize} Servers, ${channelsize} Channels, ${userssize} Users`,
         `Prefix ${bot.commandPrefix} or @${bot.user.username} | More Updates Coming Soon!`,
-        `Prefix ${bot.commandPrefix} or @${bot.user.username} | My Support Server: https://discord.gg/hgsM86w`,
+        `Prefix ${bot.commandPrefix} or @${bot.user.username} | My Support Server: ${bot.options.invite}`,
     ];
     setInterval(() => {
         let gameval = Math.floor((Math.random() * status.length));
