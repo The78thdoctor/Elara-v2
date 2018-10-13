@@ -27,7 +27,6 @@ module.exports = class DmCommand extends Command {
     }
 
   async  run(msg, { user, content }) {
-      if(user !== user.bot) return msg.say(`${nemoji} I can't dm other bots ${nemoji}`)
       let embed = new Discord.RichEmbed()
           .setColor(`RANDOM`)
           .setDescription(content)
