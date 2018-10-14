@@ -28,6 +28,7 @@ module.exports = class NCommand extends Command {
     async run(message, {member, reason }) {
         if(member.user.id === this.client.owners[0].id) return message.say(`I can't ban my bot owner..`)
         if(member.user.id === message.author.id) return message.say(`You can't ban yourself :face_palm: `)
+        if(member.user.id === this.client.user.id) return message.say(`I CAN'T BAN MYSELF! :face_palm:`);
         if(member.hasPermission("MANAGE_MESSAGES")) return message.say(`I can't ban another staff member.`)
 
         let banEmbed = new Discord.RichEmbed()
