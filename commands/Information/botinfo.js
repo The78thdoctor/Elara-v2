@@ -31,6 +31,7 @@ module.exports = class BotinfoCommand extends Command {
             .addField(`❯ Discord Bots.org Link`, `[Click Here](https://discordbots.org/bot/455166272339181589)`, true)
             .addField(`❯ bots.discord.pw Link`, `[Click Here](https://bots.discord.pw/bots/455166272339181589)`, true)
             .addField(`❯ Upvote the bot`, `[Vote Here!](https://discordbots.org/bot/455166272339181589/vote)`, true)
+            .addField(`❯ Support The Bot Here!`, `[Patreon](https://www.patreon.com/Elara)`, true)
             .addField(`❯ Servers`, `Do \`${this.client.commandPrefix}servers\` to see the full list.`, true)
             .setFooter(`Requested By ${message.author.tag}`, message.author.displayAvatarURL);
         message.say(botembed)
