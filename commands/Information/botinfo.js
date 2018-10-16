@@ -29,7 +29,6 @@ module.exports = class BotinfoCommand extends Command {
             .addField("❯ Invite Link", `[Click Here](https://discordapp.com/oauth2/authorize?client_id=${this.client.user.id}&permissions=8&scope=bot)`, true)
             .addField(`❯ My Support Server`, `[Click Here](${this.client.options.invite})`, true)
             .addField(`❯ Discord Bots.org Link`, `[Click Here](https://discordbots.org/bot/455166272339181589)`, true)
-            .addField(`❯ bots.discord.pw Link`, `[Click Here](https://bots.discord.pw/bots/455166272339181589)`, true)
             .addField(`❯ Upvote the bot`, `[Vote Here!](https://discordbots.org/bot/455166272339181589/vote)`, true)
             .addField(`❯ Support The Bot Here!`, `[Patreon](https://www.patreon.com/Elara)`, true)
             .addField(`❯ Servers`, `Do \`${this.client.commandPrefix}servers\` to see the full list.`, true)
