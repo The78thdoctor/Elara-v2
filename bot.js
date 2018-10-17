@@ -25,7 +25,6 @@ fs.readdir("./events/", (err, files) => {
     });
 });
 process.on('unhandledRejection', error => {
-    if(error.includes("Unknown Message")) return;
     console.error(`ERROR: \n${error}`);
     let errorembed = new Discord.RichEmbed()
         .setColor(`RED`)
