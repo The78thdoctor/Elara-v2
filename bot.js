@@ -9,7 +9,8 @@ const bot = new CommandoClient({
     owner: ['288450828837322764', "391529339214364674", "440810964061913119"],
     invite: "https://discord.gg/ExpAf64",
     autoReconnect: true,
-    commandEditableDuration: 1000000
+    commandEditableDuration: 1000000,
+     fetchAllMembers: true
 });
 fs.readdir("./events/", (err, files) => {
     if (err) {
