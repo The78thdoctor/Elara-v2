@@ -121,44 +121,13 @@ module.exports = class NCommand extends Command {
                 name: `❯\u2000\Server Channels`,
                 value: `Type **${this.client.commandPrefix}channels** to see \nthe Servers Channels`,
                 inline: true
+            },
+            {
+                name: `❯\u2000\Server Emojis`,
+                value: `Type **${this.client.commandPrefix}emojis** to see \nthe Servers Emojis`,
+                inline: true
             }
         )
-        let emojis = {
-            0: []
-        }
-        let counter = 0
-        guild.emojis.forEach((emoji, index) => {
-            if (emojis[counter].join('\n').length > 950) {
-                if (++index === guild.emojis.length) {
-                    emojis[counter].push(`${emoji}`)
-                } else {
-                    counter++
-                    emojis[counter] = []
-                }
-            } else {
-                emojis[counter].push(`${emoji}`)
-            }
-        })
-        if (emojis[0].join('').length !== 0) {
-            Object.keys(emojis).forEach((collection, index) => {
-                if (index !== 0) {
-                    fields.push({
-                        name: '❯\u2000\Continued',
-                        value: emojis[index].join(' ')
-                    })
-                } else {
-                    fields.push({
-                        name: '❯\u2000\Emojis',
-                        value: emojis[index].join(' ')
-                    })
-                }
-            })
-        } else {
-            fields.push({
-                name: '❯\u2000\Emojis',
-                value: '**None**'
-            })
-        }
             send()
 
         function send() {
@@ -171,8 +140,6 @@ module.exports = class NCommand extends Command {
                     },
                     fields: fields
                 }
-            }).catch(e => {
-                this.client.channels.get(config.errorchannel).send(`ERROR\n${e}`)
             })
         }
     }
