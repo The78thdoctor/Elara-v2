@@ -13,15 +13,16 @@ module.exports = class NCommand extends Command {
         })
     }
     async run(message) {
+        let textchannels = message.guild.channels.filter(c => c.type == "text").map(c => `<#${c.id}>`).join(", ");
+        let voicechannels = message.guild.channels.filter(c => c.type == "voice").map(c => `${c.name}`).join(", ");
+        let categorys = message.guild.channels.filter(c => c.type == "category").map(c => `${c.name}`).join(", ")
         let embed = new Discord.RichEmbed()
             .setColor(`RANDOM`)
             .setTitle(`**Text Channels**`)
             .setTimestamp()
-            .setDescription(`${message.guild.channels.filter(c => c.type == "text").map(c => `<#${c.id}>`).join(", ")}`)
-            .addField(`Voice Channels`, `${message.guild.channels.filter(c => c.type == "voice").map(c => `${c.name}`).join(", ")}`)
-            .addField(`Categorys`, `${message.guild.channels.filter(c => c.type == "category").map(c => `${c.name}`).join(", ")}`)
-
-
+            .setDescription(textchannels ? textchannels : "None")
+            .addField(`Voice Channels`, voicechannels ? voicechannels : "None")
+            .addField(`Categorys`, categorys ? categorys : "None")
         message.channel.send(embed)
     }
 }
