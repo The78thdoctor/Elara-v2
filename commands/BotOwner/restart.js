@@ -18,6 +18,6 @@ module.exports = class RestartCommand extends Command {
             .setTimestamp()
             .setFooter(`Restarted At`)
             .setDescription(`${message.author} Restarted the bot`)
-        this.client.channels.get("468372950266150916").send(embed).then(message.react('426956230582599690')).then(this.client.destroy().then(this.client.login(config.token)).then( await message.say(`Successfully Restarted. ${this.client.emojis.get('476629550797684736')}`)))
+        this.client.channels.get(this.client.config.logchannel).send(embed).then(message.react('426956230582599690')).then(this.client.destroy().then(this.client.login(config.token)).then( await message.say(`Successfully Restarted. ${this.client.emojis.get('476629550797684736')}`)))
     }
 }
