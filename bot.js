@@ -12,6 +12,7 @@ const bot = new CommandoClient({
     commandEditableDuration: 1000000,
      fetchAllMembers: true
 });
+bot.config = config;
 fs.readdir("./events/", (err, files) => {
     if (err) {
         let embed = new Discord.RichEmbed()
