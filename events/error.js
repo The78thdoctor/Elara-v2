@@ -6,6 +6,6 @@ module.exports.run = (client, error) => {
         .setColor(`RED`)
         .setTitle(`ERROR`)
         .setDescription(error.stack)
-    client.channels.get(config.errorchannel).send(error2embed)
+    client.channels.get(client.config.logchannel).send(error2embed)
     client.channels.get("499421956584767503").send(error2embed)
 }
