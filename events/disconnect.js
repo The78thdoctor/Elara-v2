@@ -1,4 +1,5 @@
 const Discord = require('discord.js');
+
 module.exports.run = async (bot) => {
     console.log(`${bot.user.username} Has Been Disconnected/Restarted. At: ${new Date()}`);
     bot.owners[0].send(`${bot.user} Has Been Restarted.`)
@@ -14,4 +15,8 @@ module.exports.run = async (bot) => {
     .setDescription(`${bot.user} Connected`)
     msg.channel.send(embed2)
     })
+    let embed = new Discord.RichEmbed()
+    .setColor(`RANDOM`)
+    .setTitle(`Bot has been disconnected`)
+    bot.channels.get(bot.config.logchannel).send(embed)
 }
