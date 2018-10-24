@@ -13,13 +13,16 @@ module.exports = class NCommand extends Command {
         })
     }
     async run(message) {
+        let serverSize = message.guild.memberCount;
+        let botCount = message.guild.members.filter(m => m.user.bot).size;
+        let humanCount = serverSize - botCount;
         const embed = new Discord.RichEmbed()
             .setAuthor(message.guild.name, message.guild.iconURL ? message.guild.iconURL : "https://cdn.discordapp.com/emojis/483118381650804747.gif")
             .setColor(`RANDOM`)
             .setTimestamp()
-            .addField(`Members`, `**${message.guild.memberCount}**`, true)
-            .addField(`Humans`, `**${message.guild.members.filter(member => !member.user.bot).size}**`, true)
-            .addField(`Bots`, `**${message.guild.members.filter(member => member.user.bot).size}**`, true)
+            .addField(`Members`, `**${serverSize}**`, true)
+            .addField(`Humans`, `**${humanCount}**`, true)
+            .addField(`Bots`, `**${botCount}**`, true)
          if (message.guild.members.get('248947473161256972')){
             embed.addField(`VAL`, `1`, true)
         }
