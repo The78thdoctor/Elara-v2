@@ -73,10 +73,5 @@ module.exports = class NCommand extends Command {
         .addField(`Emoji List [2]`, list2)
         .addField(`Emoji List [3]`, list3)
         message.say(embed)
-        console.log(`
-        List 1: ${list1.length}
-        List 2: ${list2.length}
-        List 3: ${list3.length}
-        `)
     }
 }
