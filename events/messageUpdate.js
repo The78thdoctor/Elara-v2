@@ -10,13 +10,13 @@ module.exports.run = (bot, oldMessage, newMessage) => {
     let content2 = newMessage.content;
     if (content.length === 0) return;
     if (content === content2) return;
-    if(content.length + content2.length < 2048) return;
     let botembed = new Discord.RichEmbed()
         .setColor("#FF0000")
         .setTimestamp()
         .setAuthor(`Message Updated By ${newMessage.author.tag}`, `${newMessage.author.displayAvatarURL}`)
         .setFooter(`${bot.user.tag}`, `${bot.user.displayAvatarURL}`)
         .setDescription(`_ _►Content: \n ►Old Message **${content}** \n ►Update Message **${content2}** \n ►Channel ${newMessage.channel}`)
+    if(botembed.setDescription < 2048) return;
     modlogs.send(botembed).catch(err => {
     console.log(`ERROR\n${err}`)
     bot.channels.get(bot.config.logchannel).send(`ERROR\n${err}`)
