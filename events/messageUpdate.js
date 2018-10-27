@@ -10,7 +10,7 @@ module.exports.run = (bot, oldMessage, newMessage) => {
     let content2 = newMessage.content;
     if (content.length === 0) return;
     if (content === content2) return;
-    if(content + content2.length < 2048) return;
+    if(content.length + content2.length < 2048) return;
     let botembed = new Discord.RichEmbed()
         .setColor("#FF0000")
         .setTimestamp()
