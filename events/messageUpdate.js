@@ -10,15 +10,16 @@ module.exports.run = (bot, oldMessage, newMessage) => {
     let content2 = newMessage.content;
     if (content.length === 0) return;
     if (content === content2) return;
-    let botembed = new Discord.RichEmbed()
-        .setColor("#FF0000")
-        .setTimestamp()
-        .setAuthor(`Message Updated By ${newMessage.author.tag}`, `${newMessage.author.displayAvatarURL}`)
-        .setFooter(`${bot.user.tag}`, `${bot.user.displayAvatarURL}`)
-        .setDescription(`_ _►Content: \n ►Old Message **${content}** \n ►Update Message **${content2}** \n ►Channel ${newMessage.channel}`)
-    if(botembed.description < 2048) return;
-    modlogs.send(botembed).catch(err => {
-    console.log(`ERROR\n${err}`)
-    bot.channels.get(bot.config.logchannel).send(`ERROR\n${err}`)
-    });
+       let embed = new Discord.RichEmbed()
+          .setColor(`#FF0000`)
+          .setTitle(`Old Message`)
+          .setDescription(`${content}`)
+          .setAuthor(`Message Updated`, oldMessage.author.displayAvatarURL)
+          .addField(`Info`, `**User:** ${oldMessage.author.tag}\n**User ID:** ${oldMessage.author.id}\n**Channel:** ${oldMessage.channel}\n**Channel ID:** ${oldMessage.channel.id}\nNew Message will be down below below :arrow_double_down:`)
+      modlogs.send(embed)
+      let embed2 = new Discord.RichEmbed()
+      .setColor(`#FF0000`)
+      .setTitle(`New Message`)
+      .setDescription(content2)
+      modlogs.send(embed2)
 }
