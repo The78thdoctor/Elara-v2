@@ -5,7 +5,7 @@ module.exports = class NCommand extends Command {
         super(client, {
             name: "prune",
             memberName: "prune",
-            aliases: ["purge", "nuke"],
+            aliases: ["purge", "nuke", `clear`, `clean`],
             examples: [`${client.commandPrefix}prune <amount here>`],
             description: "Prunes/Purges the channel",
             group: "moderation",
