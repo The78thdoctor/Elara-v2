@@ -16,7 +16,7 @@ module.exports.run = (bot, oldMessage, newMessage) => {
         .setAuthor(`Message Updated By ${newMessage.author.tag}`, `${newMessage.author.displayAvatarURL}`)
         .setFooter(`${bot.user.tag}`, `${bot.user.displayAvatarURL}`)
         .setDescription(`_ _►Content: \n ►Old Message **${content}** \n ►Update Message **${content2}** \n ►Channel ${newMessage.channel}`)
-    if(botembed.setDescription < 2048) return;
+    if(botembed.description < 2048) return;
     modlogs.send(botembed).catch(err => {
     console.log(`ERROR\n${err}`)
     bot.channels.get(bot.config.logchannel).send(`ERROR\n${err}`)
