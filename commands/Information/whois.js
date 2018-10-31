@@ -22,7 +22,8 @@ module.exports = class WhoisCommand extends Command {
             {
                 key: 'member',
                 prompt: 'What member do you want the info about?',
-                type: 'member'
+                type: 'member',
+                default: msg => msg.member
             }
         ]
     })}
@@ -52,14 +53,7 @@ module.exports = class WhoisCommand extends Command {
             .addField('❯\u2000\Highest Role', member.roles.size > 1 ? member.highestRole : 'N/A', true)
             .addField('❯\u2000\Highest Role Hoisted', member.highestRole.hoist ? "Yes" : "No", true)
             .addField(`❯\u2000\**Permissions**`, allowed ? `•\u2000${allowed}` : '•\u2000\None')
-            // .addField(`Roles [${member.roles.size}]`, `${member.roles.sort((b, a) => { return a.position - b.position }).map(role => `${role}`).join(" | ")}`)
-            .addField(`❯\u2000\Role(s)`, member.roles.size > 1 ? arrayClean(null, member.roles.map((r) => {
-                if (r.name !== '@everyone') {
-                    return r;
-                }
-
-                return null;
-            })).join(' | ') : 'None', false)
+            .addField(`❯\u2000\Role(s)`, member.roles.size > 1 ? arrayClean(null, member.roles.map((r) => {if (r.name !== '@everyone') {return r;}return null;})).join(' | ') : 'None', false)
         msg.say(embed)
     }
 }
