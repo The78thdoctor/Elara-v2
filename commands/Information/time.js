@@ -29,6 +29,13 @@ module.exports = class NCommand extends Command {
             .setTitle(`Current Time For G-Rated Family Gaming (${curenttime.format('nice-day').toString()})`)
            return await msg.say(embed)
         }else
+        if(content.toLowerCase() === "v" || content.toLowerCase() === "val"){
+            const curenttime = spc.now(tzdb.find(x => x.name === "London").value);
+            let embed = new Discord.RichEmbed()
+                .setColor(`RANDOM`)
+                .setTitle(`Current Time For VAL (${curenttime.format('nice-day').toString()})`)
+            return await msg.say(embed)
+        }else
             if (content.length > 1) {
                 const argstotal = content;
                 if (argstotal === "list")
@@ -50,7 +57,7 @@ module.exports = class NCommand extends Command {
                         title: `Current time (${argstotal}):`,
                         description: curenttime.format('nice-day').toString(),
                         fields: [{
-                            name: "Need help.",
+                            name: "Need help?",
                             value: `Do \`\`${this.client.commandPrefix}time list\`\` to get a list of available timezones!`
                         }],
                         timestamp: new Date()
