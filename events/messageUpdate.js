@@ -1,7 +1,6 @@
 const Discord = require('discord.js');
 module.exports.run = (bot, oldMessage, newMessage) => {
     if (oldMessage.channel.type === "dm") return;
-    if (newMessage.channel.type === "dm") return;
     if (newMessage.author.bot) return;
     let modlogs = oldMessage.guild.channels.find(c => c.name === "modlogs");
     if (!modlogs) return;
@@ -10,7 +9,9 @@ module.exports.run = (bot, oldMessage, newMessage) => {
     let content2 = newMessage.content;
     if (content.length === 0) return;
     if (content === content2) return;
-       let embed = new Discord.RichEmbed()
+    let length = content.length + content2.length;
+  if(length > 2048){
+      let embed = new Discord.RichEmbed()
           .setColor(`#FF0000`)
           .setTitle(`Old Message`)
           .setDescription(`${content}`)
@@ -22,4 +23,14 @@ module.exports.run = (bot, oldMessage, newMessage) => {
       .setTitle(`New Message`)
       .setDescription(content2)
       modlogs.send(embed2)
+  }else 
+  if(length < 2040){
+      let embed = new Discord.RichEmbed()
+          .setColor(`#FF0000`)
+          .setTitle(`Content`)
+          .setDescription(`**Old Message: **\n${content}\n\n**New Message: **\n${content2}`)
+          .setAuthor(`Message Updated`, oldMessage.author.displayAvatarURL)
+          .addField(`Info`, `**User:** ${oldMessage.author.tag}\n**User ID:** ${oldMessage.author.id}\n**Channel:** ${oldMessage.channel}\n**Channel ID:** ${oldMessage.channel.id}`)
+      modlogs.send(embed)
+  }
 }
