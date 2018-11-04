@@ -1,3 +1,4 @@
+let servers = ['346501388655656973']
 module.exports = {
-servers = ["366686135700815873"]
+    servers
 }
