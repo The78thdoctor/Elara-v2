@@ -32,7 +32,6 @@ module.exports = class NCommand extends Command {
         let list2 = [
             "The Garden [Click Here](https://discord.gg/52q9nxX)",
             "Nami's Town ^-^ [Click Here](https://discord.gg/JMus5cT)",
-            "Alison's Gaming Server [Click Here](https://discord.gg/SfrEYGk)",
             "red panda tea club [Click Here](https://discord.gg/KT49WeZ)",
             "idk what to name this server [Click Here](https://discord.gg/NCCBMWz)",
             "SPC🌸 [Click Here](https://discord.gg/YZEvxRV)",
@@ -49,7 +48,6 @@ module.exports = class NCommand extends Command {
         let list3 = [
             "ERG Fanclub [Click Here](https://discord.gg/fRWBzgS)",
             "Summer Musashi Where [Click Here](https://discord.gg/NZgZUpC)",
-            "The Lounge [Click Here](https://discord.gg/W2ZZHkY)",
             "The Candy Shop [Click Here](https://discord.gg/ym689GK)",
             "Bender's Lair [Click Here](https://discord.gg/99xaeGn)",
             "Jay's Server [Click Here](https://discord.gg/Ug7fAAX)",
@@ -59,14 +57,13 @@ module.exports = class NCommand extends Command {
             "Anime Squad [Click Here](https://discord.gg/pFamEpp)",
             "🌺Kawaii Server🌺 [Click Here](https://discord.gg/vMzpPSs)",
             "Miyano's Listless Club [Click Here](https://discord.gg/M4D2W8R)",
-            "Dank Inc. [Click Here](https://discord.gg/kPTsXUJ)",
             "I Love Tohru [Click Here](https://discord.gg/96AakE9)",
             "Nyan Nyan Hell [Click Here](https://discord.gg/FW8bv8q)",
             "Sorae's Shack [Click Here](https://discord.gg/4whBhuM)"
         ]
         let embed = new Discord.RichEmbed()
         .setColor(`RANDOM`)
-        .setAuthor(`47 Servers Listed.`, this.client.user.displayAvatarURL)
+        .setAuthor(`${list1.length + list2.length + list3.length + 1} Servers Listed.`, this.client.user.displayAvatarURL)
         .setTitle(`Global Emoji Servers`)
         .addField(`Info`, `**Once you join the server restart discord to be able to use the global emojis.**\n\n**If the links are expired join the support server and tell ${this.client.owners[0].tag} to update that invite**\n\n**If a server no longer has Global Emojis please contact ${this.client.owners[0].tag} to remove it from this list.**`)
         .addField(`Emoji List [1]`, list1)
