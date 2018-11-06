@@ -1,12 +1,9 @@
 const Discord = require('discord.js');
 module.exports.run = async (bot, message) => {
-   if (message.channel.name.includes("suggestion")) {
-        if (message.author.id !== "288450828837322764" && message.author.id !== "248947473161256972") {
+    if (message.channel.name.includes('suggestion')) {
+        if (message.author.id === "288450828837322764" || message.author.id === "248947473161256972") return;
             message.react("✅")
             message.react("❌")
-        } else {
-            return;
-        }
     }
     if (message.channel.id === "473574603374067732") {
         message.member.addRole(`474016263883194373`)
