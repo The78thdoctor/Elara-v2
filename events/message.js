@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 module.exports.run = async (bot, message) => {
-    if (message.channel.id === '455184204615909377') {
+   if (message.channel.name.includes("suggestion")) {
         if (message.author.id !== "288450828837322764" && message.author.id !== "248947473161256972") {
             message.react("✅")
             message.react("❌")
