@@ -6,8 +6,7 @@ module.exports = (bot) => {
     var status = [
         `@${bot.user.username} help | Serving: ${guildsize} Servers, ${channelsize} Channels, ${userssize} Users`,
         `@${bot.user.username} help | More Updates Coming Soon!`,
-        `@${bot.user.username} help | My Support Server: ${bot.options.invite}`,
-        `@${bot.user.username} help | My Website: https://elara.netlify.com/`
+        `@${bot.user.username} help | My Support Server: ${bot.options.invite}`
     ];
     setInterval(() => {
         let gameval = Math.floor((Math.random() * status.length));
