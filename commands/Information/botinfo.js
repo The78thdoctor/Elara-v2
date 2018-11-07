@@ -30,7 +30,7 @@ module.exports = class BotinfoCommand extends Command {
             .addField("❯ Created On", `**${moment(this.client.user.createdAt).format('MMMM Do YYYY')}**`, true)
             .addBlankField(false)
             .addField(`❯ Bot Owner(s)`, this.client.owners, true)
-            .addField(`❯ Links`, `Website: [Click Here](https://elara.netlify.com)\nBot Invite: [Click Here](https://discordapp.com/oauth2/authorize?client_id=${this.client.user.id}&permissions=8&scope=bot)\nSupport Server: [Click Here](${this.client.options.invite})\nDBL: [Click Here](https://discordbots.org/bot/455166272339181589)\nUpvote: [Vote Here!](https://discordbots.org/bot/455166272339181589/vote)`, true)
+            .addField(`❯ Links`, `Bot Invite: [Click Here](https://discordapp.com/oauth2/authorize?client_id=${this.client.user.id}&permissions=8&scope=bot)\nSupport Server: [Click Here](${this.client.options.invite})\nDBL: [Click Here](https://discordbots.org/bot/455166272339181589)\nUpvote: [Vote Here!](https://discordbots.org/bot/455166272339181589/vote)`, true)
             .addField(`❯ Servers`, `Do \`${this.client.commandPrefix}servers\` to see the server list`)
             .setFooter(`Requested By ${message.author.tag}`, message.author.displayAvatarURL);
         message.say(botembed)
