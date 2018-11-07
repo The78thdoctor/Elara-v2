@@ -10,7 +10,6 @@ module.exports = class RUSERCommand extends Command {
             description: "Gets a random user from everyone in the server or from a certain role",
             memberName: "randomuser",
             guildOnly: true,
-            ownerOnly: true,
             args: [
                 {
                     key: "role",
