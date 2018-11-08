@@ -45,8 +45,8 @@ module.exports = class NCommand extends Command {
             .addField("Reported By", `${message.author}`, true)
             .addField("Reported User", `${rUser}`, true)
             .addField("Thank You", "Your Report has been given to the Moderators of the Server, They will get back to you shortly.")
-        let reportschannel = message.guild.channels.find(c => c.name === "modlogs");
-        if (!reportschannel) return message.channel.send("I can't find the **modlogs** channel");
+        let reportschannel = message.guild.channels.find(c => c.name === this.client.util.modlogs) || message.guild.channels.find(c => c.name === "reports");
+        if (!reportschannel) return message.channel.send(`I can't find the **${this.client.util.modlogs}** or the **reports** channel`);
         message.delete().catch();
         reportschannel.send(reportEmbed);
         message.author.send(dmEmbed);
