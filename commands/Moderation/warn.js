@@ -29,8 +29,8 @@ module.exports = class NCommand extends Command {
         let Moderatoruser = message.author.id;
         let reason = warning;
         let rUser = member
-        let modlogs = message.guild.channels.find(c => c.name === "modlogs");
-        if (!modlogs) return message.channel.send('Cant Find the modlogs Channel');
+        let modlogs = message.guild.channels.find(c => c.name === this.client.util.modlogs);
+        if (!modlogs) return message.channel.send(`Cant Find the ${this.client.util.modlogs} Channel`);
         if (rUser.id === message.author.id) return message.channel.send(`Can't warn yourself Silly.`)
         message.channel.send(`** ✅ ${rUser} Has been warned.**`)
         const dmembed = new Discord.RichEmbed()
