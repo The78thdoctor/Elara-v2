@@ -3,11 +3,10 @@ module.exports.run = (client, member) => {
     let modlogs = member.guild.channels.find(c => c.name === "modlogs");
     if (!modlogs) return;
     let botembed = new Discord.RichEmbed()
-        .setColor("#1CFF00")
-        .setAuthor('Member Joined', member.user.displayAvatarURL)
-        .setFooter(`ID: ${member.id}`)
-        .setTimestamp()
-        .setDescription(`${member} ${member.user.tag}`)
-        .setThumbnail(member.user.displayAvatarURL)
+    .setColor(`#FF000`)
+    .setTitle(`Member Joined`)
+    .setAuthor(member.user.tag, member.user.displayAvatarURL)
+    .setDescription(`**Mention: **${member.user}\n**Tag: **${member.user.tag}\n**ID: **${member.id}\n**MemberCount: **${member.guild.memberCount}`)
+    .setThumbnail(member.user.displayAvatarURL)
     modlogs.send(botembed);
 }
