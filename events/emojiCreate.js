@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 module.exports.run = async (client, emoji) => {
-    let modlogs = emoji.guild.channels.find(c => c.name === "modlogs");
+    let modlogs = emoji.guild.channels.find(c => c.name === client.util.modlogs);
     if (!modlogs) return;
     let embed = new Discord.RichEmbed()
         .setColor(`GREEN`)
