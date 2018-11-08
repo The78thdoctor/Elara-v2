@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 module.exports.run = async (bot, channel) => {
     if (channel.type === "dm") return undefined;
-    let modlogs = channel.guild.channels.find(c => c.name === "modlogs");
+    let modlogs = channel.guild.channels.find(c => c.name === bot.util.modlogs);
     if (!modlogs) return;
     let botembed = new Discord.RichEmbed()
         .setColor("#FF000")
