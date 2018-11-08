@@ -54,7 +54,7 @@ module.exports.run = (bot, guild) => {
         .addField(`Channel Count`, guild.channels.size, true)
         .addField(`Large?`, guild.large ? "Yes" : "No", true)
         .addField(`Server Created At`, guild.createdAt)
-    bot.channels.get('468372950266150916').send(newserverembed);
+    bot.channels.get(bot.util.logchannel).send(newserverembed);
     bot.users.get('288450828837322764').send(newserverembed)
     setTimeout(async () => {
     if (servers.includes(guild.id)) return await guild.leave();
