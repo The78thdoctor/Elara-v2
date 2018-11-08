@@ -11,6 +11,7 @@ const arrayClean = function (deleteValue, array) {
 
     return array;
 };
+const modlogs = "modlogs";
 const sreact = "476629550797684736";
 const nreact = "482868924573155349";
 const semoji = "<a:success:476629550797684736>";
@@ -186,5 +187,6 @@ module.exports = {
     sreact,
     nreact,
     nemoji,
-    semoji
+    semoji,
+    modlogs
 };
