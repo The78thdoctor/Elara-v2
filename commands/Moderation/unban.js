@@ -25,7 +25,7 @@ module.exports = class NCommand extends Command {
             .then(users => {
                 message.guild.unban(users.id)
                     .then(() => {
-                        let modlogs = message.guild.channels.find(c => c.name === "modlogs");
+                        let modlogs = message.guild.channels.find(c => c.name === this.client.util.modlogs);
                         if(!modlogs) return message.channel;
                         let embed = new Discord.RichEmbed()
                         .setColor(`#FF000`)
