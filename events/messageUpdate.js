@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 module.exports.run = (bot, oldMessage, newMessage) => {
     if (oldMessage.channel.type === "dm") return;
     if (newMessage.author.bot) return;
-    let modlogs = oldMessage.guild.channels.find(c => c.name === "modlogs");
+    let modlogs = oldMessage.guild.channels.find(c => c.name === bot.util.modlogs);
     if (!modlogs) return;
     let content = oldMessage.content;
     if (content.length === 0) return;
