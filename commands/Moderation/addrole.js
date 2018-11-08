@@ -28,7 +28,7 @@ module.exports = class AddRoleCommand extends Command {
    }
 
     async run(message, {member, role}) {
-        let modlogs = message.guild.channels.find(c => c.name === "modlogs");
+        let modlogs = message.guild.channels.find(c => c.name === this.client.util.modlogs);
         if(!modlogs) modlogs = message.channel;
         if (member.roles.has(role.id)) return message.say("They already have that role.");
         await (member.addRole(role.id));
