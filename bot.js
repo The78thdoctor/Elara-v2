@@ -3,6 +3,7 @@ const config = require('./config.js');
 const path = require('path');
 const fs = require('fs');
 const Discord = require('discord.js');
+const util = require("./util/util.js");
 const bot = new CommandoClient({
     commandPrefix: "e!",
     unknownCommandResponse: false,
@@ -13,6 +14,7 @@ const bot = new CommandoClient({
      fetchAllMembers: true
 });
 bot.config = config;
+bot.util = util;
 fs.readdir("./events/", (err, files) => {
     if (err) {
         let embed = new Discord.RichEmbed()
