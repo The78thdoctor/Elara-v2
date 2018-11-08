@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 module.exports.run = (bot, oldEmoji, newEmoji) => {
-    let modlogs = newEmoji.guild.channels.find(c => c.name === "modlogs");
+    let modlogs = newEmoji.guild.channels.find(c => c.name === bot.util.modlogs);
     if (!modlogs) return;
     let embed = new Discord.RichEmbed()
         .setColor(`PURPLE`)
