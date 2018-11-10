@@ -10,9 +10,9 @@ module.exports = class NCommand extends Command {
         super(client, {
             name: "beautiful",
             memberName: "beautiful",
-            aliases: [],
-            examples: [`${client.commandPrefix}beautiful @user/userid/username`],
-            description: "Makes a beautiful painting of the person you choose",
+            aliases: [`admire`],
+            examples: [],
+            description: "Admires someone profile photo",
             group: "fun",
             args: [
                 {
@@ -24,16 +24,29 @@ module.exports = class NCommand extends Command {
         })
     }
     async run(message, { user }) {
-        message.channel.send('Loading...').then(msg => {
+        let embed = new Discord.RichEmbed()
+        .setColor(`RANDOM`)
+        .setDescription(`Loading..`)
+        message.channel.send(embed).then(msg => {
             get(user.displayAvatarURL.replace('.gif', '.png')).then(avatar => {
-                fsn.readFile('./util/plate_beautiful.png').then(plate => {
+                fsn.readFile('./util/plate_beautiful.png').then(async plate => {
+                    message.channel.startTyping(true)
                     let canvas = new Canvas(634, 675)
-                        .setColor('#FF0000')
+                        .setColor("#363940")
                         .addRect(0, 0, 634, 675)
                         .addImage(avatar.body, 423, 45, 168, 168)
                         .addImage(avatar.body, 426, 382, 168, 168)
                         .addImage(plate, 0, 0, 634, 675);
-                    message.channel.send({ files: [{ attachment: canvas.toBuffer(), name: "Painting.png" }] });
+                    let image = await canvas.toBuffer();
+                    let embed = new Discord.RichEmbed()
+                    .attachFiles([new Discord.Attachment(image, "boop.png")])
+                    .setImage("attachment://boop.png")
+                    .setColor(`RANDOM`)
+                    .setAuthor(user.tag, user.displayAvatarURL)
+                    .setFooter(`Admired By: ${message.author.tag}`, message.author.displayAvatarURL)
+                    message.channel.send(embed).then(async () => {
+                        message.channel.stopTyping(true)
+                    })
                     msg.delete();
                 });
             });
