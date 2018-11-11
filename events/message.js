@@ -1,5 +1,27 @@
 const Discord = require('discord.js');
 module.exports.run = async (bot, message) => {
+   if(message.guild.id === "273525914187333637"){
+   if(message.channel.name.startsWith("youtuber-")){
+    if(message.author.bot) return;
+    if(message.author.id === bot.user.id) return;
+    message.delete().catch()
+    if(message.embeds.map(c =>c).length === 0) return;
+    let embed = new Discord.RichEmbed()
+    .setColor(`#FF0000`)
+    .setTitle(message.embeds.map(c => c.title))
+    .setAuthor(`Youtube`)
+    .setURL(message.embeds.map(c => c.url).join(' '))
+    .setDescription(`${message.embeds.map(c => c.description)}`)
+    .setThumbnail(message.embeds.map(c => c.thumbnail.url).join(' '))
+
+    message.channel.send(`${message.embeds.map(c => c.title)} - <${message.embeds.map(c => c.url).join(' ')}>`, {embed}).then(async () => {
+        await message.channel.send(`-----------------------------------------------------------------------------------------------------------------------------------------------------------------`)
+    })
+}else{
+    return;
+}
+}
+   
    
     if (message.channel.name === "server-suggestions" || message.channel.name === "📝server-suggestions📝" || message.channel.name === "suggestions" || message.channel.name === "suggestion" || message.channel.name === "server-suggestion" || message.channel.name === "📝suggestions" || message.channel.name === "📝suggestions📝" || message.channel.name === "suggestions📝") {
         if (message.author.id === "288450828837322764" || message.author.id === "248947473161256972") return;
