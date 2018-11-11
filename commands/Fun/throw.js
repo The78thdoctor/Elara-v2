@@ -20,7 +20,7 @@ module.exports = class NCommand extends Command {
     }
     async run(message, {user}) {
         const throwuser = user
-        let replies = [`Banana`, `Car`, `Truck`, `Hot Firemen`, `A Building`,
+        let replies = [`Banana`, `Car`, `Truck`, `A Building`,
             `SpongeBob`, 'Patrick', 'Nothing', 'Admins', 'Moderators', 'Staff Members',
             'Black Hole', 'Scams', `Love`, `Hate`, `iPhone`, `Brick`, `Bad Bots`, `Chair`,
             `Lemons`, `Cake`, `Pringles`, `Gummy Bears`, `Bus`, `Train`, `Yourself`, `Knife`, `UR MOM`,
