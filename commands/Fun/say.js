@@ -23,10 +23,7 @@ module.exports = class SayCommand extends Command {
     }
 
     async run(msg, { content }) {
-        let embed = new Discord.RichEmbed()
-            .setColor(`RANDOM`)
-            .setDescription(content)
-        msg.channel.send(embed)
+        msg.channel.send(content)
         msg.delete().catch()
     }
 };
