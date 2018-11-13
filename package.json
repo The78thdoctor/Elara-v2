@@ -39,6 +39,7 @@
     "path": "^0.12.7",
     "querystring": "^0.2.0",
     "random-puppy": "^1.1.0",
+    "request": "^2.88.0",
     "simple-youtube-api": "^5.0.2",
     "snekfetch": "^4.0.4",
     "spacetime": "^4.4.0",
