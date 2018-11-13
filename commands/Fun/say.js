@@ -5,19 +5,14 @@ module.exports = class SayCommand extends Command {
     constructor(client) {
         super(client, {
             name: 'say',
-            group: 'fun',
+            group: 'moderation',
             memberName: 'say',
             description: 'Sends a message to the channel',
-            aliases: [`announce`],
+            aliases: ['speak', 'talk'],
             examples: [`${client.commandPrefix}say #channel Hi there!`],
             guildOnly: true,
             userPermissions: ["MANAGE_MESSAGES"],
             args: [
-                {
-                    key: "channel",
-                    prompt: "What channel do you want me to send it to?",
-                    type: "channel"
-                },
                 {
                     key: 'content',
                     prompt: 'What would you like the content of the message to be?',
@@ -27,11 +22,11 @@ module.exports = class SayCommand extends Command {
         });
     }
 
-    async  run(msg, { channel, content }) {
-        msg.delete().catch()
+    async run(msg, { content }) {
         let embed = new Discord.RichEmbed()
-            .setDescription(content)
             .setColor(`RANDOM`)
-        channel.send(embed);
+            .setDescription(content)
+        msg.channel.send(embed)
+        msg.delete().catch()
     }
 };
