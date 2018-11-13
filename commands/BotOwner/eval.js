@@ -3,7 +3,9 @@ const discord = require('discord.js');
 const tags = require('common-tags');
 const escapeRegex = require('escape-string-regexp');
 const { Command } = require('../../util/Commando');
-
+const Commando = require('../../util/Commando');
+const {startTyping, stopTyping} = require('../../util/util.js')
+const os = require('os');
 const nl = '!!NL!!';
 const nlPattern = new RegExp(nl, 'g');
 
@@ -13,9 +15,11 @@ module.exports = class EvalCommand extends Command {
             name: 'eval',
             group: 'botowner',
             memberName: 'eval',
-            aliases: ["ev", "e", "eva"],
+            aliases: ["ev", "e", "eva", "code", "evalcode", "evaluate"],
             description: 'Executes JavaScript code.',
             details: 'Only the bot owner(s) may use this command.',
+            hidden: true,
+            guarded: true,
             ownerOnly: true,
 
             args: [
@@ -23,7 +27,8 @@ module.exports = class EvalCommand extends Command {
                     key: 'script',
                     prompt: 'What code would you like to evaluate?',
                     type: 'string'
-                }
+                },
+                
             ]
         });
 
@@ -33,10 +38,17 @@ module.exports = class EvalCommand extends Command {
   async  run(msg, args) {
         // Make a bunch of helpers
         /* eslint-disable no-unused-vars */
+        const vc = msg.member.voiceChannel;
+        const Discord = discord;
         const message = msg;
+        const bot = this.client;
         const client = msg.client;
         const objects = client.registry.evalObjects;
         const lastResult = this.lastResult;
+        const m = msg;
+        const c = msg.channel;
+        const embed = new discord.RichEmbed()
+        const e = embed;
         const doReply = val => {
             if (val instanceof Error) {
                 msg.say(`Callback error: \`${val}\``);
@@ -84,7 +96,7 @@ module.exports = class EvalCommand extends Command {
     makeResultMessages(result, hrDiff, input = null, editable = false) {
         const inspected = util.inspect(result, { depth: 0 })
             .replace(nlPattern, '\n')
-            .replace(this.sensitivePattern, '--snip--');
+            .replace(this.sensitivePattern, '--Nope--');
         const split = inspected.split('\n');
         const last = inspected.length - 1;
         const prependPart = inspected[0] !== '{' && inspected[0] !== '[' && inspected[0] !== "'" ? split[0] : inspected[0];
@@ -120,9 +132,10 @@ module.exports = class EvalCommand extends Command {
         if (!this._sensitivePattern) {
             const client = this.client;
             let pattern = '';
-            if (client.token) pattern += escapeRegex(client.token);
+            if (client.token) pattern += escapeRegex(client.token)
             Object.defineProperty(this, '_sensitivePattern', { value: new RegExp(pattern, 'gi') });
         }
+        
         return this._sensitivePattern;
     }
 };
