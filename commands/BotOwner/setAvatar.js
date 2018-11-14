@@ -9,12 +9,19 @@ module.exports = class SACommand extends Command {
             group: "botowner",
             description: "Sets the avatar of the Bots Account",
             aliases: ["sa", "setav"],
-            ownerOnly: true
+            ownerOnly: true,
+            args: [
+                {
+                    key: "url",
+                    prompt: "What do you want to be the new avatar profile photo?",
+                    type: "string",
+                    default: message => message.attachments.first().url
+                }
+            ]
         })
     }
-    async run (message) {
-        let logchannel = this.client.channels.get(process.env.LOG_CHANNEL || config.logchannel)
-        let image = message.attachments.first().url;
+    async run (message, {url}) {
+        let image = url
         this.client.user.setAvatar(image);
         message.react(`476629550797684736`)
         let embed = new Discord.RichEmbed()
