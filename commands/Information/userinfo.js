@@ -15,7 +15,8 @@ module.exports = class WhoisCommand extends Command {
                 {
                     key: 'user',
                     prompt: 'What user do you want the info about?',
-                    type: 'user'
+                    type: 'user',
+                    default: msg => msg.author
                 }
             ]
         })
@@ -35,6 +36,7 @@ module.exports = class WhoisCommand extends Command {
             .addField(`❯\u2000\Bot`, user.bot ? 'Yes' : 'No', true)
             .addField(`❯\u2000\Bot Owner`, `${user.id !== "288450828837322764" && user.id !== "391529339214364674" && user.id !== "440810964061913119" ? "No" : "Yes, Hi Boss <:SmileyHearts:485361754633797654>"}`, true)
             .addField(`❯\u2000\Account Created At`, `${moment(user.createdAt).format('dddd, MMMM Do YYYY')}\n${moment(user.createdAt).format('h:mm:ss a zz')}`, true)
+            .setFooter(`❯\u2000\Want to see another users info? Do ${this.client.commandPrefix}userinfo @user/userid`)
         msg.say(embed)
     }
 }
