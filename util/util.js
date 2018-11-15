@@ -16,6 +16,18 @@ const sreact = "476629550797684736";
 const nreact = "482868924573155349";
 const semoji = "<a:success:476629550797684736>";
 const nemoji = "<a:XX:482868924573155349>";
+const status = {
+    "online": "<a:online:506430888670920704> Online",
+    "idle": "<a:Idle:506430934359343104> Idle",
+    "dnd": "<a:dnd:506430977065877505> DND",
+    "offline": "<a:offline:506431026604539904> Offline"
+}
+const emojisstatus = {
+    "online": "<a:online:506430888670920704>",
+    "idle": "<a:Idle:506430934359343104>",
+    "dnd": "<a:dnd:506430977065877505>",
+    "offline": "<a:offline:506431026604539904>"
+}
 const capitalizeFirstLetter = function (string) {
     return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
 };
@@ -188,5 +200,7 @@ module.exports = {
     nreact,
     nemoji,
     semoji,
-    modlogs
+    modlogs,
+    status,
+    emojisstatus
 };
