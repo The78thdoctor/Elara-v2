@@ -10,7 +10,7 @@ module.exports = class AddRoleCommand extends Command {
            memberName: "addrole",
            description: "Adds a role to a user",
            examples: [`${client.commandPrefix}addrole @user <Role Name>`],
-           userPermissions: ["MANAGE_ROLES", "MANAGE_GUILD", "ADMINISTRATOR"],
+           userPermissions: ["MANAGE_ROLES"],
            guildOnly: true,
            args: [
                {
