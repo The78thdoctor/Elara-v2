@@ -4,7 +4,7 @@ module.exports = class DmCommand extends Command {
     constructor(client) {
         super(client, {
             name: 'dm',
-            group: 'fun',
+            group: 'moderation',
             memberName: 'dm',
             description: 'Sends a message to the user you mention.',
             aliases: ["pm"],
@@ -27,18 +27,22 @@ module.exports = class DmCommand extends Command {
     }
 
   async  run(msg, { user, content }) {
+      let owners = this.client.owners.map(c => c.id).join(" ")
+      if(owners.includes(user.id)) return msg.say(`I ain't dming one of my bot owners! Are you crazy?`)
+      if(user === this.client.user) return msg.say(`${nemoji} I can't dm myself :face_palm:`)
       let embed = new Discord.RichEmbed()
           .setColor(`RANDOM`)
           .setDescription(content)
-          .setFooter(`Message from ${msg.author.tag}`, msg.author.displayAvatarURL)
+          .setAuthor(`Message From ${msg.guild.name}`, msg.guild.iconURL)
           .setTimestamp()
           
       user.send(embed).then(m => {
            msg.react(sreact)
            msg.say(`${semoji} ${msg.author} Sent the message to ${user.tag}`).then(m => {m.delete(10000).catch()})
-      }).catch(error => {
+      })
+      .catch(error => {
           msg.react(nreact)
-        msg.say(`${nemoji} I can't send ${user.tag} a dm, The person has blocked me or doesn't allow dms from others.`)
+        msg.say(`${nemoji} I can't send ${user.tag} a dm, The person has blocked me or doesn't allow dms from others.`).then(m => m.delete(10000).catch())
   })
     }
 };
