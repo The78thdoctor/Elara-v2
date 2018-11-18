@@ -21,7 +21,6 @@ module.exports = class NCommand extends Command {
     }
     async run(msg, { user }) {
         let server = this.client.guilds.filter(c => c.members.get(user.id));
-        // let modperms = this.client.guilds.filter(c => c.members.get(user.id).permissions.has("MANAGE_MESSAGES"))
         let e = new Discord.RichEmbed()
             .setAuthor(`Information on ${user.tag}`, user.displayAvatarURL)
             .setColor(`RANDOM`)
@@ -30,11 +29,11 @@ module.exports = class NCommand extends Command {
             .addField(`Username`, user.username, true)
             .addField(`User ID`, user.id, true)
         if(this.client.owners.map(c => c.id).includes(user.id)){
-            e.addField(`Bot Owner`, `Hi Boss <:SmileyHearts:485361754633797654>`, true)
+            e.addField(`Bot Owner`, `Yes, Hi Boss <:SmileyHearts:485361754633797654>`, true)
         }
         if(server.size > 1) {
             e.addField(`Mutual Servers Count`, server.size, true)
-            e.addField(`Mutual Servers`, server.map(c => `**Guild: **[${c.name}] **ID: **(${c.id})`), false)
+            e.addField(`Mutual Servers`, server.map(c => `**Guild: **[${c.name}]\n**ID: **(${c.id})`), false)
         }else{
             e.addField(`Mutual Server Count`, `0`, true)
             e.addField(`Mutual Servers`, `None`, true)
