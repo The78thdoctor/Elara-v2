@@ -34,7 +34,8 @@ module.exports = class NCommand extends Command {
         if(server.size > 1) {
             e.addField(`Mutual Servers Count`, server.size, true)
             e.setTitle(`Mutual Serevers`)
-            e.setDescription(server.map(c => `**Guild: **[${c.name}]\n**ID: **(${c.id})`), false)
+            e.setDescription(server.map(c => `**Guild: **[${c.name}]\n**ID: **(${c.id})\n**Nickname: **${c.members.get(user.id).nickname ? c.members.get(user.id).nickname : "None"}\n`), false)
+            
         }else{
             e.addField(`Mutual Server Count`, `0`, true)
             e.addField(`Mutual Servers`, `None`, true)
