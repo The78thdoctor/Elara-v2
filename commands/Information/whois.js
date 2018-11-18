@@ -55,7 +55,7 @@ module.exports = class WhoisCommand extends Command {
             embed.addBlankField()
             embed.addField('❯\u2000\Highest Role', member.roles.size > 1 ? member.highestRole : 'N/A', true)
             embed.addField('❯\u2000\Highest Role Hoisted', member.highestRole.hoist ? "Yes" : "No", true)
-            embed.addField(`❯\u2000\Permissions`, `Do \`${prefix}myperms\``)
+            embed.addField(`❯\u2000\Permissions`, `Do \`${prefix}perms\``)
             embed.addField(`❯\u2000\Role(s)`, member.roles.size > 1 ? arrayClean(null, member.roles.map((r) => {if (r.name !== '@everyone') {return r;}return null;})).join(' | ') : 'None', false)
             embed.setFooter(`Want to see another members info? Do ${msg.guild._commandPrefix ? msg.guild._commandPrefix : this.client.commandPrefix}whois @user/userid`)
             msg.say(embed)
