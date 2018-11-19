@@ -5,10 +5,13 @@ module.exports.run = async (bot, message) => {
             message.react("✅")
             message.react("❌")
     }
-    if (message.channel.id === "473574603374067732") {
-        message.member.addRole(`474016263883194373`)
-        message.delete().catch()
+    if (message.channel.name === "❔weekly-riddle-answer" || message.channel.name === "weekly-riddle-answer") {
         let riddleanswers = message.guild.channels.find(c => c.name === "elara-log") || message.guild.channels.find(c => c.name === "🤖elara-log")
+        if(!riddleanswers) return;
+        if(message.author.bot) return;
+        let role = message.guild.roles.find(c => c.name === "Riddle Submitted").id;
+        message.member.addRole(role)
+        message.delete().catch()
         let riddleembed = new Discord.RichEmbed()
             .setColor(`RANDOM`)
             .setAuthor(`${message.author.tag}`, message.author.avatarURL)
