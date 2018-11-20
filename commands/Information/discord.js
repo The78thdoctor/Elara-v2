@@ -13,6 +13,13 @@ module.exports = class NCommand extends Command {
         })
     }
     async run(message) {
+        if(message.guild.id === "273525914187333637"){
+        let embed = new Discord.RichEmbed()
+        .setColor(`RANDOM`)
+        .setAuthor(`Invite For: ${message.guild.name}`, message.guild.iconURL)
+        .setDescription(`https://discord.gg/tAZgvdd`)
+        return message.channel.send(embed)
+        }
         if (!message.channel.permissionsFor(message.guild.me).has("SEND_MESSAGES" && "EMBED_LINKS" && "READ_MESSAGES" && "CREATE_INSTANT_INVITE")) {
             message.say(`ERROR\n I can't create a discord invite in this channel!`)
             
