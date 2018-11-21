@@ -2,6 +2,7 @@ const Discord = require('discord.js');
 module.exports.run = async (bot, message) => {
     if (message.channel.name === "server-suggestions" || message.channel.name === "📝server-suggestions📝" || message.channel.name === "suggestions" || message.channel.name === "suggestion" || message.channel.name === "server-suggestion" || message.channel.name === "📝suggestions" || message.channel.name === "📝suggestions📝" || message.channel.name === "suggestions📝") {
         if (message.author.id === "288450828837322764" || message.author.id === "248947473161256972") return;
+        if(message.author.id === message.guild.ownerID) return;
             message.react("✅")
             message.react("❌")
     }
