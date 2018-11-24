@@ -10,7 +10,7 @@ module.exports = class NCommand extends Command {
             examples: [`${client.commandPrefix}mute @user/userid <reason here>`],
             description: "Mutes a member",
             guildOnly: true,
-            userPermissions: ["MANAGE_MESSAGES", "MANAGE_GUILD"],
+            userPermissions: ["MANAGE_MESSAGES"],
             group: "moderation",
             args: [
                 {
