@@ -46,6 +46,14 @@ module.exports = class NCommand extends Command {
         .addField(`Support Server`, `[Click Here](https://discord.gg/${body.support})`, true)
         message.embed(embed)
     } catch (e) {
+        let embed = new Discord.RichEmbed()
+        .setColor(`#FF0000`)
+        .setTitle(`ERROR`)
+        .setDescription(e.stack)
+        .setTimestamp()
+        .setAuthor(message.author.tag, message.author.displayAvatarURL)
+        .addField(`Server`, `${message.guild.name} (${message.guild.id})`)
+        this.client.channels.get(this.client.config.logchannel).send(embed)
         message.say(`That bot isn't on discord bots list site.`)
     }
     }
