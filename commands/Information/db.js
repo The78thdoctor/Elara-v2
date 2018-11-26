@@ -29,7 +29,7 @@ module.exports = class DBLCommand extends Command{
         })
     }
     async run(msg, {bot, type}) {
-        if (type.toLowerCase() === "bot") {
+          if (type.toLowerCase() === "bot") {
             if (bot.bot === false) return message.channel.send(`That isn't a bot!`)
             let { body } = await superagent.get(`https://www.discordbots.org/api/bots/${bot.id}`)
             console.log(body)
@@ -47,16 +47,16 @@ module.exports = class DBLCommand extends Command{
                 **Total Upvotes: **${body.points ? body.points : "N/A"}
                 **Library: **${body.lib ? body.lib : "N/A"}
                 **Certified Bot: **${body.certifiedBot ? "Yes": "No"}
-                **Tags: **${body.tags ? body.tags.join(', ') : "N/A"}
+                **Tags: **${body.tags.length !== 0 ? body.tags.join(', ') : "N/A"}
                 **Owners: **${owners ? owners : "None"}
-                `)
+                `, true)
                 .addField(`Links`, `
                 **Discord Bots List: **[Click Here](https://discordbots.org/bot/${body.id})
                 **Invite: **[Click Here](${body.invite})
                 **Support Server: ** ${body.support ? `[Click Here](https://discord.gg/${body.support})` : 'None'}
                 **Github: **${body.github ? `[Click Here](${body.github})` : 'None'}
                 **Website: **${body.website ? `[Click Here](${body.website})` : 'None'}
-                `)
+                `, true)
                 .setColor(`RANDOM`)
                 .setThumbnail(bot.displayAvatarURL)
                 .setAuthor(bot.tag, bot.displayAvatarURL)
