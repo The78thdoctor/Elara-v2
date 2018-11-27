@@ -32,7 +32,6 @@ module.exports = class DBLCommand extends Command{
           if (type.toLowerCase() === "bot") {
             if (bot.bot === false) return message.channel.send(`That isn't a bot!`)
             let { body } = await superagent.get(`https://www.discordbots.org/api/bots/${bot.id}`)
-            console.log(body)
             let owners = body.owners.map(owner => `<@${owner}>`).join('\n');
             let embed = new RichEmbed()
                 .setTitle(`Short Description`)
