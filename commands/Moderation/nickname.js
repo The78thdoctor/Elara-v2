@@ -26,7 +26,8 @@ module.exports = class NCommand extends Command {
         })
     }
     async run(message, { member, content }) {
-    if(member.id === message.guild.owner.id) return message.say(`I Can't change the server owner's nickname!`)
+     try{
+     if(member.id === message.guild.owner.id) return message.say(`I Can't change the server owner's nickname!`)
      member.setNickname(content)
      let embed = new Discord.RichEmbed()
      .setColor(`RANDOM`)
@@ -36,6 +37,8 @@ module.exports = class NCommand extends Command {
      .setFooter(`Changed By ${message.author.tag}`, message.author.displayAvatarURL)
      .setTimestamp()
      message.embed(embed)
-    
+     }catch(e){
+    message.channel.send(`ERROR:\n${e}`)
+    }
     }
 }
