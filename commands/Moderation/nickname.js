@@ -6,7 +6,7 @@ module.exports = class NCommand extends Command {
             name: "nick",
             memberName: "nick",
             aliases: ["nickname"],
-            examples: [`${client.commandPrefix}nick @user <new nickname here>`],
+            examples: ["e!nick @user <new nickname here>"],
             description: "Nickname the user",
             group: "moderation",
             guildOnly: true,
@@ -26,19 +26,12 @@ module.exports = class NCommand extends Command {
         })
     }
     async run(message, { member, content }) {
-     try{
-     if(member.id === message.guild.owner.id) return message.say(`I Can't change the server owner's nickname!`)
-     member.setNickname(content).catch(err => {return message.channel.send(`ERROR:\n${err}`)} )
-     let embed = new Discord.RichEmbed()
-     .setColor(`RANDOM`)
-     .setTitle(`Action`)
-     .setDescription(`Nickname Changed\nUser: ${member}\nModerator: ${message.author}\nNew Nickname: **${content}**`)
-     .setAuthor(member.user.tag, member.user.displayAvatarURL)
-     .setFooter(`Changed By ${message.author.tag}`, message.author.displayAvatarURL)
-     .setTimestamp()
-     message.embed(embed)
-     }catch(e){
-    message.channel.send(`ERROR:\n${e}`)
+    if(member.id === message.guild.owner.id) return message.say(`I Can't change the server owner's nickname!`)
+    if(message.guild.me.highestRole.position < member.highestRole.position){
+        return message.channel.send(`I ain't high enough to change that members nickname`)
     }
-    }
+    member.setNickname(content).catch(e =>{
+        message.say(`ERROR:\n${e}`)  
+    })
+}
 }
