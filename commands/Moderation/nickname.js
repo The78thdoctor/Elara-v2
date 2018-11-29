@@ -28,7 +28,7 @@ module.exports = class NCommand extends Command {
     async run(message, { member, content }) {
      try{
      if(member.id === message.guild.owner.id) return message.say(`I Can't change the server owner's nickname!`)
-     member.setNickname(content)
+     member.setNickname(content).catch(err => {return message.channel.send(`ERROR:\n${err}`)} )
      let embed = new Discord.RichEmbed()
      .setColor(`RANDOM`)
      .setTitle(`Action`)
