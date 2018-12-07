@@ -8,27 +8,20 @@ module.exports = class DBLCommand extends Command{
             memberName: "dbl",
             aliases: ["dbots", "db"],
             group: "information",
-            examples: [`${client.commandPrefix}dbl @bot`, `${client.commandPrefix}dbl @user user`, `${client.commandPrefix}dbl <Mention/ID/Name> <Bot/User>`],
+            examples: [`${client.commandPrefix}dbl @user/bot`],
             description: "Gets the information on the bot or user.",
             args: [
                 {
                     key: 'bot',
-                    prompt: 'What bot do you want the info on?',
+                    prompt: 'What user or bot do you want to get the info on?.',
                     type: 'user'
-                },
-                {
-                    key: "type",
-                    prompt: "What type do you want to search, `bot` or `user`",
-                    type: "string",
-                    default: "bot"
                 }
             ]
         })
     }
-    async run(msg, {bot, type}) {
+    async run(msg, {bot}) {
         try {
-        if (type.toLowerCase() === "bot") {
-            if (bot.bot === false) return message.channel.send(`That isn't a bot!`)
+        if(bot.bot === true){
             let {body} = await new fetch("GET", `https://discordbots.org/api/bots/${bot.id}`)
                 .set("Authorization", this.client.config.discordbots);
             let owners = body.owners.map(owner => `<@${owner}>`).join('\n');
@@ -59,9 +52,7 @@ module.exports = class DBLCommand extends Command{
                 .setThumbnail(bot.displayAvatarURL)
                 .setAuthor(bot.tag, bot.displayAvatarURL)
             msg.say(embed)
-        } else
-            if (type.toLowerCase() === "user") {
-                if (bot.bot === true) return msg.channel.send(`That is a bot! Not a user!`)
+        } else{
                 let { body } = await new fetch("GET", `https://discordbots.org/api/users/${bot.id}`).set("Authorization", this.client.config.discordbots);
                     let e = new RichEmbed()
                         .setColor(`RANDOM`)
