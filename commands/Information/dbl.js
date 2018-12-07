@@ -30,7 +30,7 @@ module.exports = class DBLCommand extends Command{
         if (type.toLowerCase() === "bot") {
             if (bot.bot === false) return message.channel.send(`That isn't a bot!`)
             let {body} = await new fetch("GET", `https://discordbots.org/api/bots/${bot.id}`)
-                .set("Authorization", this.client.config.dbl);
+                .set("Authorization", this.client.config.discordbots);
             let owners = body.owners.map(owner => `<@${owner}>`).join('\n');
             let embed = new RichEmbed()
                 .setTitle(`Short Description`)
@@ -62,7 +62,7 @@ module.exports = class DBLCommand extends Command{
         } else
             if (type.toLowerCase() === "user") {
                 if (bot.bot === true) return msg.channel.send(`That is a bot! Not a user!`)
-                let { body } = await new fetch("GET", `https://discordbots.org/api/users/${bot.id}`).set("Authorization", this.client.config.dbl);
+                let { body } = await new fetch("GET", `https://discordbots.org/api/users/${bot.id}`).set("Authorization", this.client.config.discordbots);
                     let e = new RichEmbed()
                         .setColor(`RANDOM`)
                         .setAuthor(bot.tag, bot.displayAvatarURL)
