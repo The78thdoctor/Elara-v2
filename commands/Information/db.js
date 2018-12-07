@@ -1,6 +1,6 @@
 const {Command} = require('../../util/Commando');
 const {RichEmbed} = require('discord.js');
-const superagent = require('superagent');
+const fetch = require("snekfetch");
 module.exports = class DBLCommand extends Command{
     constructor(client){
         super(client,{
@@ -10,9 +10,6 @@ module.exports = class DBLCommand extends Command{
             group: "information",
             examples: [`${client.commandPrefix}dbl @bot`, `${client.commandPrefix}dbl @user user`, `${client.commandPrefix}dbl <Mention/ID/Name> <Bot/User>`],
             description: "Gets the information on the bot or user.",
-            ownerOnly: false,
-            guarded: false,
-            guildOnly: false,
             args: [
                 {
                     key: 'bot',
@@ -29,9 +26,11 @@ module.exports = class DBLCommand extends Command{
         })
     }
     async run(msg, {bot, type}) {
-          if (type.toLowerCase() === "bot") {
+        try {
+        if (type.toLowerCase() === "bot") {
             if (bot.bot === false) return message.channel.send(`That isn't a bot!`)
-            let { body } = await superagent.get(`https://www.discordbots.org/api/bots/${bot.id}`)
+            let {body} = await new fetch("GET", `https://discordbots.org/api/bots/${bot.id}`)
+                .set("Authorization", this.client.config.dbl);
             let owners = body.owners.map(owner => `<@${owner}>`).join('\n');
             let embed = new RichEmbed()
                 .setTitle(`Short Description`)
@@ -63,9 +62,7 @@ module.exports = class DBLCommand extends Command{
         } else
             if (type.toLowerCase() === "user") {
                 if (bot.bot === true) return msg.channel.send(`That is a bot! Not a user!`)
-                try {
-                    let { body } = await superagent.get(`https://www.discordbots.org/api/users/${bot.id}`)
-                    if (!body) return msg.say(`${bot.tag} isn't on <https://www.discordbots.org>`)
+                let { body } = await new fetch("GET", `https://discordbots.org/api/users/${bot.id}`).set("Authorization", this.client.config.dbl);
                     let e = new RichEmbed()
                         .setColor(`RANDOM`)
                         .setAuthor(bot.tag, bot.displayAvatarURL)
@@ -76,9 +73,10 @@ module.exports = class DBLCommand extends Command{
                         .addField(`Website Info`, `Website Admin: ${body.admin ? "Yes" : "No"}\n Website Moderator: ${body.webMod ? "Yes" : "No"}\nDiscord Moderator: ${body.mod ? "Yes" : "No"}\nCertified Developer: ${body.certifiedDev ? "Yes" : "No"}\nSupporter: ${body.supporter ? "Yes" : "No"}`)
                     if (body.banner !== undefined) { e.setImage(body.banner) }
                     msg.say(e)
-                } catch (e) {
-                    msg.say(`${bot.tag} isn't on \`discordbots.org\``)
-                }
+               
             }
+        } catch (e) {
+            msg.say(`${bot.tag} isn't on \`discordbots.org\``)
+        }
     }
 }
