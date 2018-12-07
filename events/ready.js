@@ -1,5 +1,7 @@
 const Discord = require('discord.js');
+const DBL = require("dblapi.js");
 module.exports.run = (client) => {
+    const dbl = new DBL(client.config.discordbots, client);
     console.log(`
     Bot Account: ${client.user.tag}
     Bot ID: ${client.user.id}
