@@ -1,7 +1,17 @@
 const Discord = require('discord.js');
 const DBL = require("dblapi.js");
 module.exports.run = (client) => {
+    let bot = client;
     const dbl = new DBL(client.config.discordbots, client);
+    dbl.on('posted', () => {
+    console.log('Server count posted!');
+    });
+    dbl.on('error', e => {
+    console.log(`Oops! ${e}`);
+    })
+    setInterval(() => {
+        dbl.postStats(bot.guilds.size, bot.shards.id, bot.shards.total);
+    }, 3600000);
     console.log(`
     Bot Account: ${client.user.tag}
     Bot ID: ${client.user.id}
