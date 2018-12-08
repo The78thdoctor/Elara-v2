@@ -4,7 +4,6 @@ const path = require('path');
 const fs = require('fs');
 const Discord = require('discord.js');
 const util = require("./util/util.js");
-const DBL = require("dblapi.js");
 const bot = new CommandoClient({
     commandPrefix: "e!",
     unknownCommandResponse: false,
@@ -14,16 +13,6 @@ const bot = new CommandoClient({
     commandEditableDuration: 1000000,
      fetchAllMembers: true
 });
-const dbl = new DBL(config.discordbots, bot);
-    dbl.on('posted', () => {
-    console.log('Server count posted!');
-    });
-    dbl.on('error', e => {
-    console.log(`Oops! ${e}`);
-    })
-    setInterval(() => {
-        dbl.postStats(bot.guilds.size, bot.shards.id, bot.shards.total);
-    }, 3600000);
 bot.config = config;
 bot.util = util;
 fs.readdir("./events/", (err, files) => {
