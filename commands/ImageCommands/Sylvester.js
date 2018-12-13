@@ -22,7 +22,7 @@ module.exports = class NCommand extends Command {
 
         message.channel.send(embed).then(message => {
             embed.setColor("RANDOM")
-            embed.setDescription("Here's a Photo of a Sylvester :heart:")
+            embed.setDescription("Here's a Photo of Sylvester :heart:")
             embed.setImage(replies[result])
             embed.setFooter(`Sylvester Photo ${result}/${replies.length}`)
             message.edit(embed)
