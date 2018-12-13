@@ -59,5 +59,14 @@ module.exports = {
     boops: 
         ["https://media1.tenor.com/images/cc6d3dfe2608fe8814aad379c398b93c/tenor.gif?itemid=7296714",
          "https://media1.tenor.com/images/5ba05529a05a714f93900d79164edca9/tenor.gif?itemid=3577615", "https://media1.tenor.com/images/c3f302be7b09f30965a513e0e45d02c2/tenor.gif?itemid=4698601", "https://media1.tenor.com/images/1f7c2d7bc8587e9ec4422a8d1af73f82/tenor.gif?itemid=7479077", "https://media1.tenor.com/images/ea37d5c281b7ca7c35175bdc854b0a5b/tenor.gif?itemid=11159084", "https://media1.tenor.com/images/7abde695bf76df9a228a2e879250f492/tenor.gif?itemid=11515298"
+],
+    Sylvester: [
+"https://vgy.me/HzgXkC.jpg", "https://vgy.me/SYEs2c.jpg", "https://vgy.me/W2rf7m.jpg", "https://vgy.me/D43Dml.jpg", "https://vgy.me/gpy2ml.jpg", "https://vgy.me/noVx7D.jpg", "https://vgy.me/bItz1p.jpg", "https://vgy.me/M5R8rH.jpg",
+"https://vgy.me/S8ziHg.jpg", "https://vgy.me/aKrvax.jpg", "https://vgy.me/nqNMiO.jpg", "https://vgy.me/gEmaEv.jpg", "https://vgy.me/VmyiKc.jpg", "https://vgy.me/58avNe.jpg", "https://vgy.me/Y1rD33.jpg", "https://vgy.me/uPBVss.jpg",
+"https://vgy.me/Z0oiKG.jpg", "https://vgy.me/2YNxTJ.jpg", "https://vgy.me/78xAeI.jpg", "https://vgy.me/M80aqu.jpg", "https://vgy.me/0G8jb3.jpg", "https://vgy.me/3eKie5.jpg", "https://vgy.me/OhyS8t.jpg", "https://vgy.me/EXpzUi.png", 
+"https://vgy.me/hP78Mf.jpg", "https://vgy.me/QmEtl2.jpg", "https://vgy.me/1dAkva.jpg", "https://vgy.me/51uxIq.jpg", "https://vgy.me/0d04jH.jpg", "https://vgy.me/TVSiyA.jpg", "https://vgy.me/AvAHH5.jpg", "https://vgy.me/wqXcVp.jpg", 
+"https://vgy.me/H1VEHP.jpg", "https://vgy.me/Odcmwg.jpg", "https://vgy.me/ektP9X.jpg", "https://vgy.me/P9JG3s.jpg", "https://vgy.me/ALfXd4.jpg", "https://vgy.me/JP1qKP.jpg", "https://vgy.me/kwhJY4.jpg", "https://vgy.me/vAlDdx.jpg", 
+"https://vgy.me/SDVVTU.jpg", "https://vgy.me/ueDihI.jpg", "https://vgy.me/lxjb71.jpg", "https://vgy.me/yMFImp.jpg", "https://vgy.me/p8XFXZ.jpg", "https://vgy.me/ygAWIq.png", 
+"https://vgy.me/wguGvm.jpg", "https://vgy.me/ekBUcb.jpg", "https://vgy.me/hfNVQs.jpg", "https://vgy.me/PvxZDO.jpg", "https://vgy.me/ohGSAa.jpg", "https://vgy.me/Vpz3HU.jpg", "https://vgy.me/MO0wP5.jpg", "https://vgy.me/vW9pYw.jpg", "https://vgy.me/0Zj51d.jpg", "https://vgy.me/vDeUzk.jpg", 
 ]
 }
