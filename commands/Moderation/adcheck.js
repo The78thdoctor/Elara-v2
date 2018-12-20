@@ -10,7 +10,7 @@ module.exports = class AdCheckCommand extends Command {
             guildOnly: true,
             examples: [`${client.commandPrefix}adcheck`],
             description: "Checks for discord invites in users playing statuses",
-            userPermissions: ["MANAGE_MESSAGES", "MANAGE_GUILD", "ADMINISTRATOR"]
+            userPermissions: ["MANAGE_MESSAGES"]
         })
     }
     async run (message) {
