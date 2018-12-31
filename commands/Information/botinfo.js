@@ -16,23 +16,33 @@ module.exports = class BotinfoCommand extends Command {
 
     }
     async run (message){
+        let prefix = this.client.commandPrefix;
+        let bot = this.client.user;
         let botembed = new Discord.RichEmbed()
-            .setDescription(`[Bot Information](${this.client.options.invite})`)
+            .setTitle(`Bot Information`)
+            .setAuthor(bot.tag, bot.displayAvatarURL)
             .setColor(`RANDOM`)
             .setThumbnail(this.client.user.displayAvatarURL)
-            .addField("❯ Prefixes", `${this.client.commandPrefix}, ${this.client.user}`)
-            .addField("❯ Mention", this.client.user, true)
-            .addField(`❯ Name`, this.client.user.username, true)
-            .addBlankField(false)
-            .addField(`❯ Tag`, `\`${this.client.user}\``, true)
-            .addField(`❯ ID`, `**${this.client.user.id}**`, true)
-            .addField(`❯ Discriminator`, `**#${this.client.user.discriminator}**`, true)
-            .addField("❯ Created On", `**${moment(this.client.user.createdAt).format('MMMM Do YYYY')}**`, true)
-            .addBlankField(false)
-            .addField(`❯ Bot Owner(s)`, this.client.owners, true)
-            .addField(`❯ Links`, `Bot Invite: [Click Here](https://discordapp.com/oauth2/authorize?client_id=${this.client.user.id}&permissions=8&scope=bot)\nSupport Server: [Click Here](${this.client.options.invite})\nDBL: [Click Here](https://discordbots.org/bot/455166272339181589)\nUpvote: [Vote Here!](https://discordbots.org/bot/455166272339181589/vote)`, true)
-            .addField(`❯ Servers`, `Do \`${this.client.commandPrefix}servers\` to see the server list`)
-            .setFooter(`Requested By ${message.author.tag}`, message.author.displayAvatarURL);
+            .addField(`User Info`, `
+            **User: ** ${bot}
+            **Tag: **${bot.tag}
+            **ID: **${bot.id}
+            **Discriminator: **#${bot.discriminator}
+            **Avatar: **[Click Here](${bot.displayAvatarURL})
+            **Created At: **${moment(this.client.user.createdAt).format('MMMM Do YYYY')}`, false)
+            .addField(`Info`, `
+            **Prefixes:** ${prefix}, ${this.client.user}
+            **Mutual Servers: **${this.client.guilds.filter(g => g.members.get(message.author.id)).size}
+            **Server List: ** Do \`${prefix}servers\`
+            **Stats: ** Do \`${prefix}stats\`
+            **Bot Owners: **\n${this.client.owners.map(c => c).join('\n')}`, true)
+            .addField(`Links`, `
+            [Invite](https://elara.page.link/Invite)
+            [Support Server](https://elara.page.link/Support)
+            [Github](https://elara.page.link/github)
+            [DBL](https://elara.page.link/DBL)
+            `, true)
+            .setFooter(`Requested By ${message.author.tag}`, message.author.displayAvatarURL)
         message.say(botembed)
     }
 }
