@@ -13,9 +13,9 @@ module.exports = class NCommand extends Command {
             userPermissions: ["BAN_MEMBERS"],
             args: [
                 {
-                    key: "member", 
-                    prompt: "what member do you want me to ban?",
-                    type: "member"
+                    key: "user", 
+                    prompt: "what user do you want me to ban?",
+                    type: "user"
                 },
                 {
                     key: 'reason',
@@ -25,24 +25,27 @@ module.exports = class NCommand extends Command {
             ]
         })
     }
-    async run(message, {member, reason }) {
-        if(member.user.id === this.client.owners[0].id) return message.say(`I can't ban my bot owner..`)
-        if(member.user.id === message.author.id) return message.say(`You can't ban yourself :face_palm: `)
-        if(member.user.id === this.client.user.id) return message.say(`I CAN'T BAN MYSELF! :face_palm:`);
-        if(member.hasPermission("MANAGE_MESSAGES")) return message.say(`I can't ban another staff member.`)
+    async run(message, {user, reason }) {
+          try{
+    if(message.guild.members.get(user.id)) {
+    if(user.id === this.client.user.id) return message.say(`I can't ban myself.`);
+    if(message.guild.members.get(user.id).hasPermission("MANAGE_MESSAGES")) return message.say(`I can't ban a Mod/Admin.`);
+    if(user.id === message.guild.ownerID) return message.say(`I can't ban the server owner.`);
+    let mod = message.author;
 
-        let banEmbed = new Discord.RichEmbed()
-            .setTitle(`Action`)
-            .setDescription("Member Banned")
-            .setColor("#FF0000")
-            .addField("Banned User", member.user.tag, true)
-            .addField("Moderator", message.author, true)
-            .addField("Reason", reason)
-            .setFooter(`${member.id}`)
-        let modlogs = message.guild.channels.find(c => c.name === this.client.util.modlogs)
-        if(!modlogs) modlogs = message.channel;
-        await message.guild.ban(member.user.id);
-        message.delete().catch();
-        await modlogs.send(banEmbed)
+message.guild.ban(user.id, { reason: `${reason} | Banned By: ${mod.tag}` }).then(async () => {
+    await message.say(`**${user.tag}** has been banned.`)
+})
+}else {
+if (user.id === this.client.user.id) return message.say(`I can't ban myself.`);
+if (user.id === message.guild.ownerID) return message.say(`I can't ban the server owner.`);
+let mod = message.author;
+message.guild.ban(user.id, { reason: `${reason} | Banned By: ${mod.tag}` }).then(async () => {
+    await message.say(`**${user.tag}** has been banned.`)
+})
+}
+} catch (e) {
+    message.channel.send(`ERROR:\n${e}`)
+}
     }
 }
