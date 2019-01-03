@@ -40,4 +40,3 @@ module.exports.run = async (bot, message) => {
         
             }
         }
-    }
