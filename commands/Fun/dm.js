@@ -30,6 +30,7 @@ module.exports = class DmCommand extends Command {
       let owners = this.client.owners.map(c => c.id).join(" ")
       if(owners.includes(user.id)) return msg.say(`I ain't dming one of my bot owners! Are you crazy?`)
       if(user === this.client.user) return msg.say(`${nemoji} I can't dm myself :face_palm:`)
+      msg.delete(30000).catch()
       let embed = new Discord.RichEmbed()
           .setColor(`RANDOM`)
           .setDescription(content)
@@ -38,11 +39,11 @@ module.exports = class DmCommand extends Command {
           
       user.send(embed).then(m => {
            msg.react(sreact)
-           msg.say(`${semoji} ${msg.author} Sent the message to ${user.tag}`).then(m => {m.delete(10000).catch()})
+           msg.say(`${semoji} ${msg.author} Sent the message to ${user.tag}`).then(m => {m.delete(30000).catch()})
       })
       .catch(error => {
           msg.react(nreact)
-        msg.say(`${nemoji} I can't send ${user.tag} a dm, The person has blocked me or doesn't allow dms from others.`).then(m => m.delete(10000).catch())
+        msg.say(`${nemoji} I can't send ${user.tag} a dm, The person has blocked me or doesn't allow dms from others.`).then(m => m.delete(30000).catch())
   })
     }
 };
